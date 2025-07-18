@@ -6,7 +6,7 @@ let radUnit = 1.6180339887498949
 let rad = 0
 // let a = 0
 let phi = 1.6180339887498949
-let b = 0.05
+let b = 0.1
 let a = 0
 //
 
