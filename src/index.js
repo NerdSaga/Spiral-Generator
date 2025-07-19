@@ -1,5 +1,5 @@
 import { Point } from "./math.js";
-import { calcNext, drawSpeed, lineColor, pointLimit, pointSize, start } from "../lab.js";
+import { calcNext, drawSpeed, lineColor, pointLimit, pointSize, showLines, start } from "../lab.js";
 const canvas = document.createElement("canvas")
 canvas.id = "gfxSurface";
 canvas.width = 2000
@@ -29,10 +29,14 @@ function draw() {
     gfx.strokeStyle = lineColor
     gfx.beginPath()
 
-    for (let i = 1; i < points.length; i++) {
-        const point = points[i];
-        gfx.lineTo(point.x, point.y)
+    if (showLines)
+    {
+        for (let i = 1; i < points.length; i++) {
+            const point = points[i];
+            gfx.lineTo(point.x, point.y)
+        }
     }
+
 
     gfx.lineTo(pen.x, pen.y)
 
@@ -65,6 +69,10 @@ let pointLimitReached = false
 function loop() {
     gfx.fillStyle = "#123456"
     gfx.fillRect(-canvas.width, -canvas.height, canvas.width*2, canvas.height*2)
+
+    gfx.fillStyle = "#ffffff"
+    gfx.font = "50px sans-serif"
+    gfx.fillText("Point Count: " + points.length, -canvas.width / 2, canvas.width / 2)
 
     pen.x += (nextPen.x - pen.x) * drawSpeed
     pen.y += (nextPen.y - pen.y) * drawSpeed
