@@ -5,7 +5,7 @@ import { Point } from "./src/math.js"
 let radUnit = 0.1
 let rad = 0
 let phi = 1.6180339887498949
-let c = 1
+let c = 2
 let n = 0
 //
 

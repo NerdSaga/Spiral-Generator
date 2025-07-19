@@ -65,36 +65,44 @@ function penAtNext() {
     return false
 }
 
+
+gfx.fillStyle = "#123456"
+gfx.fillRect(-canvas.width, -canvas.height, canvas.width*2, canvas.height*2)
+
+
 let pointLimitReached = false
 function loop() {
-    gfx.fillStyle = "#123456"
-    gfx.fillRect(-canvas.width, -canvas.height, canvas.width*2, canvas.height*2)
-
     gfx.fillStyle = "#ffffff"
     gfx.font = "50px sans-serif"
-    gfx.fillText("Point Count: " + points.length, -canvas.width / 2, canvas.width / 2)
+    // gfx.fillText("Point Count: " + points.length, -canvas.width / 2, canvas.width / 2)
 
-    pen.x += (nextPen.x - pen.x) * drawSpeed
-    pen.y += (nextPen.y - pen.y) * drawSpeed
+    calcNext(pen)
 
-    if (penAtNext()) {
-        pen.x = nextPen.x
-        pen.y = nextPen.y
-        points.push(new Point(pen.x, pen.y))
+    gfx.fillStyle = "#44ff44"
+    gfx.fillRect(pen.x-pointSize/2, pen.y-pointSize/2, pointSize, pointSize)
 
-        if (points.length > pointLimit) {
-            console.log("Met point limit: " + pointLimit)
-            pointLimitReached = true
-        }
+    // pen.x += (nextPen.x - pen.x) * drawSpeed
+    // pen.y += (nextPen.y - pen.y) * drawSpeed
 
-        calcNext(nextPen)
-    }
+    // if (penAtNext()) {
+    //     pen.x = nextPen.x
+    //     pen.y = nextPen.y
+    //     points.push(new Point(pen.x, pen.y))
 
-    draw()
+    //     if (points.length > pointLimit) {
+    //         console.log("Met point limit: " + pointLimit)
+    //         pointLimitReached = true
+    //     }
 
-    if (!pointLimitReached) {
-        requestAnimationFrame(loop)
-    }
+    //     calcNext(nextPen)
+    // }
+
+    // draw()
+
+    // if (!pointLimitReached) {
+        // requestAnimationFrame(loop)
+    // }
 }
+setInterval(loop, 1)
 start(nextPen)
 loop()
